@@ -48,6 +48,8 @@ jobs:
           tags: ${{ steps.meta-nginx.outputs.tags }}
           labels: ${{ steps.meta-nginx.outputs.labels }}
       - name: Test the built images
+        env:
+          REPO_NAME: ${{ github.repository }}
         run: |
           docker compose -f docker-compose.test.yml up -d
           sleep 30
